@@ -7,7 +7,7 @@ import { MatAccordion, MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MaterialModule],
+  imports: [MaterialModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
@@ -28,7 +28,7 @@ export class App {
     {item: 'Removable Eyelids', price: 100, itemType: ItemType.extraItem},
     {item: 'Antlers', price: 200, itemType: ItemType.extraItem},
     {item: 'Wings', price: 450, itemType: ItemType.extraItem},
-    {item: 'Markings', price: 40, itemType: ItemType.extraItem},
+    //{item: 'Markings', price: 40, itemType: ItemType.extraItem, quantity: 1},
     {item: 'Colours', price: 20, itemType: ItemType.extraItem},
   ];
 
@@ -39,6 +39,7 @@ export class App {
 
   onItemSelection(event: MatCheckboxChange, item: FursuitItem) {
     if (event.checked) {
+      // add item
       switch (item.itemType) {
         case ItemType.mainItem:
           this.selectedMainItems.push(item);
@@ -49,6 +50,7 @@ export class App {
       };
     }
     else {
+      //remove item
       switch (item.itemType) {
         case ItemType.mainItem:
           this.selectedMainItems = this.selectedMainItems.filter(x => x != item);
@@ -58,11 +60,32 @@ export class App {
           break;
       };
     };
-    this.expansionPanel().open();
-    this.totalPrice = this.calculateTotalPrice();
+    this.calculateTotalPrice();
   }
 
-  calculateTotalPrice(): number {
+  onMarkingsSlider(number: number) {
+    // remove markings from array
+    if (number == 0) {
+      this.fursuitExtraItems = this.fursuitExtraItems.filter(x => x.item != "Markings");
+    }
+
+    //check if item aleady exists in array
+    let markingItem: FursuitItem = this.selectedExtraItems.filter(x => x.item == "Markings")[0];
+
+    // if item doesn't exist, create new one, else update values of current item
+    if (!markingItem && number > 0) {
+      markingItem =
+        {item: 'Markings', price: 40 * number, itemType: ItemType.extraItem, quantity: number}
+      this.selectedExtraItems.push(markingItem);
+    } else if (markingItem && number > 0) {
+      markingItem.price = 40 * number;
+      markingItem.quantity = number;
+    }
+    
+    this.calculateTotalPrice();
+  }
+
+  calculateTotalPrice() {
     let priceToReturn = 0;
 
     this.selectedMainItems.forEach(item => {
@@ -73,8 +96,7 @@ export class App {
       priceToReturn += item.price;
     });
 
-    //Add sliders here
-
-    return priceToReturn;
+    this.expansionPanel().open();
+    this.totalPrice = priceToReturn;
   }
 }

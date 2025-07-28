@@ -1,7 +1,8 @@
 export class FursuitItem {
   item: string;
   price: number;
-  itemType: ItemType
+  itemType: ItemType;
+  quantity?: number;
 }
 
 export enum ItemType {

@@ -38,6 +38,7 @@
             id="slider-thumb" 
             [value]="suitDecorationNumber" 
             #slider
+            (valueChange)="onMarkingsSlider($event)"
           >
         </mat-slider> 
       </div>
@@ -76,7 +77,12 @@
                   <div class="list-subheader">Extra Items</div>
                   @for (extraItem of selectedExtraItems; track extraItem; let i = $index) {
                     <div class="list-item-wrapper">
-                      <div class="list-item">{{ extraItem.item }}</div>
+                      <div class="list-item">
+                        {{ extraItem.item }}
+                        @if (extraItem.quantity > 0) {
+                          <span>x{{extraItem.quantity}}</span>
+                        }
+                      </div>
                       <div id="list-item-price" class="list-item">£{{ extraItem.price }}</div>
                     </div>
                   }
