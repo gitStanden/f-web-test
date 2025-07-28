@@ -1,0 +1,164 @@
+/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
+
+@font-face {
+  font-family: 'Pangolin';
+  src: url('assets/fonts/Pangolin-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1, h2 {
+  color: #5f45d0;
+}
+h3 {
+  color: #6730f0;
+}
+// html, body { height: 100%; }
+body { margin: 0; font-family: 'Pangolin'; }
+
+/* Light Theme */
+:root, :host {
+  @include mat.theme-overrides((
+    primary: #5f45d0,
+    on-primary: #ffffff,
+    primary-container: #e6deff,
+    on-primary-container: #1b0062,
+    inverse-primary: #c9beff,
+    primary-fixed: #e6deff,
+    primary-fixed-dim: #c9beff,
+    on-primary-fixed: #1b0062,
+    on-primary-fixed-variant: #4727b7,
+    secondary: #6730f0,
+    on-secondary: #ffffff,
+    secondary-container: #e7deff,
+    on-secondary-container: #1f005f,
+    secondary-fixed: #e7deff,
+    secondary-fixed-dim: #ccbdff,
+    on-secondary-fixed: #1f005f,
+    on-secondary-fixed-variant: #4e00d1,
+    tertiary: #6a5e23,
+    on-tertiary: #ffffff,
+    tertiary-container: #f3e39a,
+    on-tertiary-container: #211b00,
+    tertiary-fixed: #f3e39a,
+    tertiary-fixed-dim: #d6c780,
+    on-tertiary-fixed: #211b00,
+    on-tertiary-fixed-variant: #51470d,
+    background: #fdf8f9,
+    on-background: #1c1b1c,
+    surface: #fdf8f9,
+    surface-dim: #ddd9da,
+    surface-bright: #fdf8f9,
+    surface-container-lowest: #ffffff,
+    surface-container-low: #f7f2f3,
+    surface-container: #f1eded,
+    surface-container-high: #ebe7e8,
+    surface-container-highest: #e6e1e2,
+    on-surface: #1c1b1c,
+    shadow: #000000,
+    scrim: #000000,
+    surface-tint: #605d67,
+    inverse-surface: #313031,
+    inverse-on-surface: #f4f0f0,
+    outline: #79767c,
+    outline-variant: #c9c5cc,
+    neutral: #797677,
+    neutral10: #1c1b1c,
+    error: #ba1a1a,
+    error-container: #ffdad6,
+    on-error: #ffffff,
+    on-error-container: #410002,
+    surface-variant: #e6e1e8,
+    on-surface-variant: #48464c,
+    neutral-variant: #79767c,
+    neutral-variant20: #313035,
+    inverse-secondary: #ccbdff,
+    inverse-tertiary: #d6c780,
+  ));
+}
+
+/* Dark Theme */
+.dark {
+  @include mat.theme-overrides((
+    primary: #c9beff,
+    on-primary: #30009b,
+    primary-container: #4727b7,
+    on-primary-container: #e6deff,
+    inverse-primary: #5f45d0,
+    primary-fixed: #e6deff,
+    primary-fixed-dim: #c9beff,
+    on-primary-fixed: #1b0062,
+    on-primary-fixed-variant: #4727b7,
+    secondary: #ccbdff,
+    on-secondary: #360096,
+    secondary-container: #4e00d1,
+    on-secondary-container: #e7deff,
+    secondary-fixed: #e7deff,
+    secondary-fixed-dim: #ccbdff,
+    on-secondary-fixed: #1f005f,
+    on-secondary-fixed-variant: #4e00d1,
+    tertiary: #d6c780,
+    on-tertiary: #393000,
+    tertiary-container: #51470d,
+    on-tertiary-container: #f3e39a,
+    tertiary-fixed: #f3e39a,
+    tertiary-fixed-dim: #d6c780,
+    on-tertiary-fixed: #211b00,
+    on-tertiary-fixed-variant: #51470d,
+    background: #141314,
+    on-background: #e6e1e2,
+    surface: #141314,
+    surface-dim: #141314,
+    surface-bright: #3a3939,
+    surface-container-lowest: #0f0e0f,
+    surface-container-low: #1c1b1c,
+    surface-container: #201f20,
+    surface-container-high: #2b2a2a,
+    surface-container-highest: #363435,
+    on-surface: #e6e1e2,
+    shadow: #000000,
+    scrim: #000000,
+    surface-tint: #cac4d0,
+    inverse-surface: #e6e1e2,
+    inverse-on-surface: #313031,
+    outline: #938f95,
+    outline-variant: #48464c,
+    neutral: #797677,
+    neutral10: #1c1b1c,
+    error: #ffb4ab,
+    error-container: #93000a,
+    on-error: #690005,
+    on-error-container: #ffdad6,
+    surface-variant: #48464c,
+    on-surface-variant: #c9c5cc,
+    neutral-variant: #79767c,
+    neutral-variant20: #313035,
+    inverse-secondary: #6730f0,
+    inverse-tertiary: #6a5e23,
+  ));
+}
+
+/* Typography */
+:root, :host {
+  /* core typography tokens are not generating css variables, hence below */
+  --mat-sys-brand-font-family: Pangolin;
+  --mat-sys-plain-font-family: Pangolin;
+  --mat-sys-bold-font-weight: 700;
+  --mat-sys-medium-font-weight: 500;
+  --mat-sys-regular-font-weight: 400;
+
+  @include mat.theme-overrides((
+    brand-family: Pangolin,
+    plain-family: Pangolin,
+    bold-weight: 700,
+    medium-weight: 500,
+    regular-weight: 400,
+  ));
+}
+
+// Fix for weird circle ripple
+.mat-mdc-checkbox-ripple,
+.mat-mdc-checkbox .mdc-checkbox__ripple {
+  display: none;
+}

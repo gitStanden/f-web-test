@@ -1,0 +1,92 @@
+<div id="content">
+  <h1>Price Calculator Test</h1>
+  
+  <div id="calculator-content">
+    <div>
+      <h2>Fursuit Pieces</h2>
+      <h3>Main Items</h3>
+      <ul>
+        @for (mainItem of fursuitMainItems; track mainItem; let i = $index) {
+          <li>
+            <mat-checkbox
+              (change)="onItemSelection($event, mainItem)"
+            >{{mainItem.item}}</mat-checkbox>
+          </li>
+        }
+      </ul>
+  
+      <h3>Extras</h3>
+      <ul>
+        @for (extraItem of fursuitExtraItems; track extraItem; let i = $index) {
+          <li>
+            <mat-checkbox 
+              (change)="onItemSelection($event, extraItem)"
+            >{{extraItem.item}}</mat-checkbox>
+          </li>
+        }
+      </ul>
+
+      <div id="slider-wrapper">
+        <div>Markings (Stripes/Stars/Spots) - {{ slider.value }}</div>
+        <mat-slider 
+          min="0" 
+          max="20" 
+          step="1"
+        >
+          <input 
+            matSliderThumb 
+            id="slider-thumb" 
+            [value]="suitDecorationNumber" 
+            #slider
+          >
+        </mat-slider> 
+      </div>
+    </div>
+
+    <mat-accordion id="accordian">
+      <mat-expansion-panel id="price-breakdown-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="panel-titles">Price Breakdown</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div id="summary-container">
+          <div id="summary-titles">
+            <div>Item Name</div>
+            <div>Total</div>
+          </div>
+
+          <div id="summary-content">
+            <div class="item-summary">
+              @if (selectedMainItems.length > 0) {
+                <div class="items-list">
+                  <div class="list-subheader">Main Items</div>
+                  @for (mainItem of selectedMainItems; track mainItem; let i = $index) {
+                    <div class="list-item-wrapper">
+                      <div class="list-item">{{ mainItem.item }}</div>
+                      <div id="list-item-price" class="list-item">£{{ mainItem.price }}</div>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+
+            <div class="item-summary">
+              @if (selectedExtraItems.length > 0) {
+                <div class="items-list">
+                  <div class="list-subheader">Extra Items</div>
+                  @for (extraItem of selectedExtraItems; track extraItem; let i = $index) {
+                    <div class="list-item-wrapper">
+                      <div class="list-item">{{ extraItem.item }}</div>
+                      <div id="list-item-price" class="list-item">£{{ extraItem.price }}</div>
+                    </div>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+        <div id="total-price">£{{ totalPrice }}</div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

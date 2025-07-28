@@ -1,0 +1,89 @@
+#content {
+  margin: 10px;
+}
+
+#calculator-content {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  // justify-content: space-between;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#accordian {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 300px;
+  width: 300px;
+
+  #price-breakdown-panel {
+    width: fit-content;
+    background-color: #a968d0;
+  }
+
+  .panel-titles {
+    color: #feeda3;
+  }
+
+  #summary-container {
+    #summary-content {
+      display: flex;
+      margin-top: 5px;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+
+    #summary-titles {
+      display: flex;
+      justify-content: space-between;
+      max-width: 300px;
+      width: 300px;
+      background-color: #f4b7b7;
+      border-radius: 3px;
+      padding: 5px;
+    }
+
+    .items-list {
+      padding: 5px;
+
+      .list-item-wrapper {
+        display: flex;
+        justify-content: space-between;
+        max-width: 300px;
+        width: 300px;
+
+        .list-item {
+          padding-top: 5px;
+          padding-left: 5px;
+        }
+      }
+    }
+
+    .item-summary {
+      .list-subheader {
+        color: #feeda3;
+      }
+    }
+  }
+
+  #total-price {
+    color: #feeda3;
+    border-top: 7px, dotted, white;
+    border-color: white;
+    float: right;
+  }
+}
+
+mat-slider {
+  width: 300px;
+  border-radius: 30px;
+  margin-right: 10px;
+  
+  #slider-value {
+    padding-right: 10px;
+  }
+}
